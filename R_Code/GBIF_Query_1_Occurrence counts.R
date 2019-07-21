@@ -4,14 +4,19 @@ require(tidyr)
 require(rgbif)
 require(taxize)
 
-PREDICTS <- readRDS("Raw_Data/Taxa/taxa-2019-05-09-02-34-47.rds")       #### load PREDICTS Taxa list
+print("Collecting names from PREDICTS data")
+
+PREDICTS <- readRDS("../../taxa-2019-05-09-02-34-47.rds")       #### load PREDICTS Taxa list
 PREDICTS$Scientific_Name <- paste(PREDICTS$Genus,PREDICTS$Species)      #### create column with scientific name
 PREDICTS<- PREDICTS %>%
   drop_na(Species)                                                      ### rm columns with NA
 Bee_Families <- c("Andrenidae","Apidae","Colletidae","Halictidae","Megachilidae","Melittidae","Stenotritidae")  ## vector with the names of the seven bee families
 PREDICTS <- PREDICTS %>% 
   filter(Family %in% Bee_Families)                ## Subset taxa list so that it only contains species in the bee families 
-PREDICTS_Species <- data.frame(unique(PREDICTS$Scientific_Name))           ### create data frame with just the species list from PREDICTS
+Bee_Species <- data.frame(unique(PREDICTS$Scientific_Name))           ### create data frame with just the species list from PREDICTS
+Bee_Species <- Bee_Species[Bee_Species!=" "] # Removes spaces. Also converts to a vector for later ease of appending.
+names(Bee_Species) <- "Scientific_Name"
+
 European_Countries<-c("AT","AD","AL","AX","BA","BY","BE","BG","CY","GG","GI","JE","HR","CH","CY","CZ","DK","EE","FI","FR","DE",
                       "GR","HU","HR","IE","IT","LI","LV","LT","LU","ME","MC","MT","MK","MT","MD","NL","NO","PL","PT","VA","RO",
                       "RU","SK","SI","SM","ES","SE","UA","GB")  ### Vector of European CountryCodes  
@@ -25,27 +30,21 @@ colnames(TaxonKey_Bee)[2:3] <- c("col", "gbif")
 
 ## query each database in turn 
 
+print("Querying GBIF and Catalogue of life to collect full and distinct list of species names")
 for(i in 1:length(Bee_Families)){
 col_bee_down <- col_downstream(id = TaxonKey_Bee[i,2], downto = "species", intermediate = FALSE, extant_only = TRUE)         ## Catelouge of Life
 gbif_bee_down <- gbif_downstream(key = TaxonKey_Bee[i,3], downto = "species", intermediate = FALSE, start = 1, limit = 100000000) ## Gbif database
-Bee_Species <- rbind(col_bee_down[[1]][2],gbif_bee_down$name)
-Bee_Species <- Bee_Species %>% distinct(childtaxa_name)
-assign(paste(Bee_Families[i],"Species", sep = "_"),Bee_Species)
+Species <- rbind(col_bee_down[[1]][2],gbif_bee_down$name)
+append(Species[[1]], Bee_Species)
 }
 
-Bee_Species <- rbind(Andrenidae_Species,         ### combine all the species downstream of the family and the species in the PREDICTS Database
-                     Apidae_Species,
-                     Colletidae_Species,
-                     Halictidae_Species,
-                     Megachilidae_Species,
-                     Melittidae_Species,
-                     Stenotritidae_Species,
-                     PREDICTS_Species)
-
-colnames(Bee_Species)[1] <- c("Scientific_Name")           ### Rename column
+Bee_Species <- data.frame(Bee_Species)
+names(Bee_Species) <- "Scientific_Name"
 
 Bee_Species <- Bee_Species %>%              ### Keep only the unique species -- PREDICTS Database adds a single species -- Halictus gemmeus
   distinct(Scientific_Name)
+
+print("List generated.")
 
 save(file = "RData_All_Bee_Speices.RData", Bee_Species)
 
