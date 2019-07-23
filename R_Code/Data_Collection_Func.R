@@ -5,7 +5,8 @@
 
 #' Using a list of species (or if other taxa it first generates a list of species), checks for synonyms with GBIF and catalogue of life, gets all occurance data (for a specific geographic area), and associates the required data with it.
 #' 
-#' @param taxon_rank The taxon level for which you are searching. 1=Species, indicates using binomial species names. 0 indicates using any taxanomic rank Genus or higher.
+#' @param taxon_rank The taxon level for which you are searching. 1=Species, indicates using binomial species names. 0 indicates using any taxanomic rank Genus or higher. Defaults to 0.
+#' @param Kingdom The kingdom to which your chosen species belong. Options are Animalia or Plantae. Defaults to Animalia.
 #' @param taxa_names A vector or single column data frame of the names of taxa to search (e.g. bee families). If using species the binomial names should be given (separated with a space).
 #' @param input_data A single column data frame species list to check against GBIF and catalogue of life to identify any synonyms. Defaults to FALSE. Only use where you have a specific species list under other umbrella terms. If only looking for certain species, use taxa_names.
 #' @param min_occur The minimum number of occurance records for a species for it to be included. Defaults to 20.
@@ -13,9 +14,21 @@
 #' @return The sum of \code{x} and \code{y}.
 #' @examples
 #' 
-GBIFSpecies <- function(taxon_rank, taxa_names, min_occur=20, input_data=FALSE, geo_area){
+GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=20, input_data=FALSE, geo_area){
 
     # Step one, sort out what the species are for different taxanomic ranks:
+
+    if (Kingdom=="animalia"){
+        Kingdom <- "Animalia"
+    }
+    if (Kingdom=="plantae"){
+        Kingdom <- "Plantae"
+    }
+    if (Kingdom=="Plantae"|Kingdom=="Animalia"){
+        return
+    } else {
+        stop("Please enter a valid Kingdom")
+    }
 
     if (taxon_rank==0){
         print("hello")
@@ -25,7 +38,11 @@ GBIFSpecies <- function(taxon_rank, taxa_names, min_occur=20, input_data=FALSE, 
 
     print("Checking species list")
 
-
+    if (input_data!=FALSE){
+        Species_list <- input_data
+    } else {
+        Species_list <- c()
+    }
     ## get the family IDs for the three databases we are going to query to get list of species names
 
     TaxonKey <- taxize::get_ids(names = taxa_names, db = c("col","gbif"))
@@ -35,45 +52,46 @@ GBIFSpecies <- function(taxon_rank, taxa_names, min_occur=20, input_data=FALSE, 
 
     ## query each database in turn 
 
-    print("Querying GBIF and Catalogue of life to collect full and distinct list of species names")
+    print("Querying GBIF and Catalogue of life to collect full and distinct list of species names. This may take several minutes.")
     for(i in 1:length(taxa_names)){
-    col_bee_down <- col_downstream(id = TaxonKey[i,2], downto = "species", intermediate = FALSE, extant_only = TRUE)         ## Catelouge of Life
-    gbif_bee_down <- gbif_downstream(key = TaxonKey[i,3], downto = "species", intermediate = FALSE, start = 1, limit = 100000000) ## Gbif database
-    Species <- rbind(col_bee_down[[1]][2],gbif_bee_down$name)
-    append(Species[[1]], Bee_Species) # Adds the new species list to the overall species list
+    col_names <- col_downstream(id = TaxonKey[i,2], downto = "species", intermediate = FALSE, extant_only = TRUE)         ## Catelouge of Life
+    gbif_names <- gbif_downstream(key = TaxonKey[i,3], downto = "species", intermediate = FALSE, start = 1, limit = 100000000) ## Gbif database
+    Query_Species <- rbind(col_names[[1]][2],gbif_names$name)
+    Query_Species <- unname(unlist(Query_Species))
+    Species_list<- append(Query_Species, Species_list) # Adds the new species list to the overall species list
     }
 
-    Bee_Species <- data.frame(Bee_Species) # Converts to data frame
-    names(Bee_Species) <- "Scientific_Name" # Renames the column 
+    Species_list <- data.frame(Species_list) # Converts to data frame
+    names(Species_list) <- "Scientific_Name" # Renames the column 
 
-    Bee_Species <- Bee_Species %>%              ### Keep only the unique species -- PREDICTS Database adds a single species -- Halictus gemmeus
+    Species_list <- Species_list %>%  # Keep only the unique species
     distinct(Scientific_Name)
 
     print("List generated.")
 
-    save(file = "RData_All_Bee_Speices.RData", Bee_Species)
+    #save(file = "RData_All_Bee_Speices.RData", Species_list)
 
     ##generated the taxon key for each species in the list so that I can query GBIF
 
+    print("Fetching species IDs from GBIF")
     UsageKey<-c()
-    for(i in 1:nrow(Bee_Species)){
-    Taxon <- name_backbone(name=(Bee_Species[i,1]),rank="Species",kingdom="Animalia")
-    TaxonKey <- Taxon$usageKey
-    UsageKey[i]<-TaxonKey
+    for(i in 1:nrow(Species_list)){
+    Taxon <- name_backbone(name=(Species_list[i,1]),rank="Species",kingdom=Kingdom) #User input for which Kingdom to search
+    UsageKey[i] <- Taxon$usageKey
     }
 
-    Bee_TaxonKey <- data.frame(Bee_Species$Scientific_Name, UsageKey)
+    Species_TaxonKey <- data.frame(Species_list$Scientific_Name, UsageKey)
 
-
+    print("Counting available occurrence data")
     Occurrence<-c()
-    for(i in 1:nrow(Bee_TaxonKey)){
-    Occurrence[i]<-occ_count(taxonKey = (Bee_TaxonKey[i,2]),georeferenced = TRUE)
+    for(i in 1:nrow(Species_TaxonKey)){
+    Occurrence[i]<-occ_count(taxonKey = (Species_TaxonKey[i,2]),georeferenced = TRUE)
     }
 
-    Bee_Occurrence_Count<-data.frame(Bee_TaxonKey,Occurrence)
-    colnames(Bee_Occurrence_Count)[1:3]<-c("Scientific_Name","GBIF_TaxonKey","GBIF_Occurrence_Count")
-    Bee_Occurrence_Count <- Bee_Occurrence_Count %>% filter(GBIF_Occurrence_Count > 20) # occurance count! Make variable
-
+    Species_Occurrence_Count<-data.frame(Species_TaxonKey,Occurrence)
+    colnames(Species_Occurrence_Count)[1:3]<-c("Scientific_Name","GBIF_TaxonKey","GBIF_Occurrence_Count")
+    Species_Occurrence_Count <- Species_Occurrence_Count %>% filter(GBIF_Occurrence_Count > min_occur) # Removes all species that have fewer than min_occur records
+    print("Species with too few records have been removed")
 
     ###Queried GBIF to find the occurrence data for each species
     ##Then going to query again but now only those species that occur in europe --- Here I think it becomes a bit patchy with GBIF as not all occurrences in the GBIF database
@@ -82,28 +100,33 @@ GBIFSpecies <- function(taxon_rank, taxa_names, min_occur=20, input_data=FALSE, 
 
     print("Searching for all occurance records in specified geographic area.")
 
-    Europe_Occ<-c()
+    Geo_Occurrence<-c()
     Country_Count<-c()
     Full_Count<-c()
-    for(i in 1:nrow(Bee_Occurrence_Count)){
-    Europe=occ_search(taxonKey = Bee_Occurrence_Count[i,2], hasCoordinate = TRUE, hasGeospatialIssue = FALSE, country = c(geo_area), return = "meta")
+    for(i in 1:nrow(Species_Occurrence_Count)){
+    Europe=occ_search(taxonKey = Species_Occurrence_Count[i,2], hasCoordinate = TRUE, hasGeospatialIssue = FALSE, country = c(geo_area), return = "meta")
     for(j in 1:50){
         Europe_Continent=Europe[[j]][["count"]]
         Country_Count[j]=sum(Europe_Continent)
     }
     Full_Count=sum(Country_Count)
-    Europe_Occ[i]<-sum(Full_Count)
+    Geo_Occurrence[i]<-sum(Full_Count)
     }
 
-    Europe_Occurrence_Count<-cbind(Bee_Occurrence_Count,Europe_Occ)
+    Europe_Occurrence_Count<-cbind(Species_Occurrence_Count,Geo_Occurrence)
     colnames(Europe_Occurrence_Count)[4]<-c("GBIF_Europe_Occurrence_Count")
 
     European_Bee_Species <- Europe_Occurrence_Count %>%
-    filter(GBIF_Europe_Occurrence_Count > 20) %>%
+    filter(GBIF_Europe_Occurrence_Count > min_occur) %>% # Removes all species with less than min_occur records in the geogrphic area
     arrange(Scientific_Name)
 
-    save(file ="RData_European_Bee_Species.RData", European_Bee_Species)
+    #save(file ="RData_European_Bee_Species.RData", European_Bee_Species)
 
     print ("Occurance data gathered")
 
 }
+
+
+geo_area<-c("AT","AD","AL","AX","BA","BY","BE","BG","CY","GG","GI","JE","HR","CH","CY","CZ","DK","EE","FI","FR","DE",
+                      "GR","HU","HR","IE","IT","LI","LV","LT","LU","ME","MC","MT","MK","MT","MD","NL","NO","PL","PT","VA","RO",
+                      "RU","SK","SI","SM","ES","SE","UA","GB")  ### Vector of European CountryCodes  
