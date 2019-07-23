@@ -10,7 +10,7 @@ PREDICTS <- readRDS("../../taxa-2019-05-09-02-34-47.rds")       #### load PREDIC
 PREDICTS$Scientific_Name <- paste(PREDICTS$Genus,PREDICTS$Species)      #### create column with scientific name
 PREDICTS<- PREDICTS %>%
   drop_na(Species)                                                      ### rm columns with NA
-Bee_Families <- c("Andrenidae","Apidae","Colletidae","Halictidae","Megachilidae","Melittidae","Stenotritidae")  ## vector with the names of the seven bee families
+Bee_Families <- c("Andrenidae") #,"Apidae","Colletidae","Halictidae","Megachilidae","Melittidae","Stenotritidae")  ## vector with the names of the seven bee families
 PREDICTS <- PREDICTS %>% 
   filter(Family %in% Bee_Families)                ## Subset taxa list so that it only contains species in the bee families 
 Bee_Species <- data.frame(unique(PREDICTS$Scientific_Name))           ### create data frame with just the species list from PREDICTS
@@ -35,11 +35,11 @@ for(i in 1:length(Bee_Families)){
 col_bee_down <- col_downstream(id = TaxonKey_Bee[i,2], downto = "species", intermediate = FALSE, extant_only = TRUE)         ## Catelouge of Life
 gbif_bee_down <- gbif_downstream(key = TaxonKey_Bee[i,3], downto = "species", intermediate = FALSE, start = 1, limit = 100000000) ## Gbif database
 Species <- rbind(col_bee_down[[1]][2],gbif_bee_down$name)
-append(Species[[1]], Bee_Species)
+append(Species[[1]], Bee_Species) # Adds the new species list to the overall species list
 }
 
-Bee_Species <- data.frame(Bee_Species)
-names(Bee_Species) <- "Scientific_Name"
+Bee_Species <- data.frame(Bee_Species) # Converts to data frame
+names(Bee_Species) <- "Scientific_Name" # Renames the column 
 
 Bee_Species <- Bee_Species %>%              ### Keep only the unique species -- PREDICTS Database adds a single species -- Halictus gemmeus
   distinct(Scientific_Name)
@@ -67,7 +67,7 @@ for(i in 1:nrow(Bee_TaxonKey)){
 
 Bee_Occurrence_Count<-data.frame(Bee_TaxonKey,Occurrence)
 colnames(Bee_Occurrence_Count)[1:3]<-c("Scientific_Name","GBIF_TaxonKey","GBIF_Occurrence_Count")
-Bee_Occurrence_Count <- Bee_Occurrence_Count %>% filter(GBIF_Occurrence_Count > 20)
+Bee_Occurrence_Count <- Bee_Occurrence_Count %>% filter(GBIF_Occurrence_Count > 20) # occurance count! Make variable
 
 
 ###Queried GBIF to find the occurrence data for each species
@@ -75,6 +75,7 @@ Bee_Occurrence_Count <- Bee_Occurrence_Count %>% filter(GBIF_Occurrence_Count > 
 #have been classified a continent so will be missing a lot of data. So I have got the country codes for all european countries and then summed the occurrence data from 
 #each country.Hopefully identifying those species which have sufficient occurrence data in Europe.
 
+print("Searching for all occurance records in specified geographic area.")
 
 Europe_Occ<-c()
 Country_Count<-c()
@@ -97,3 +98,5 @@ European_Bee_Species <- Europe_Occurrence_Count %>%
   arrange(Scientific_Name)
 
 save(file ="RData_European_Bee_Species.RData", European_Bee_Species)
+
+print ("Occurance data gathered")
