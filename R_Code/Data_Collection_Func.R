@@ -29,12 +29,13 @@ GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=
     } else {
         stop("Please enter a valid Kingdom")
     }
-
-    if (taxon_rank==0){
-        print("hello")
-    }else{
-        print("goodbye")
-    }
+    
+    # Still need to add something to allow species lists to be imported and maybe alter future steps
+    # if (taxon_rank==0){
+    #     print("hello")
+    # }else{
+    #     print("goodbye")
+    # }
 
     print("Checking species list")
 
@@ -80,17 +81,17 @@ GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=
     UsageKey[i] <- Taxon$usageKey
     }
 
-    Species_TaxonKey <- data.frame(Species_list$Scientific_Name, UsageKey)
+    Species_list <- data.frame(Species_list$Scientific_Name, UsageKey)
 
     print("Counting available occurrence data")
     Occurrence<-c()
-    for(i in 1:nrow(Species_TaxonKey)){
-    Occurrence[i]<-occ_count(taxonKey = (Species_TaxonKey[i,2]),georeferenced = TRUE)
+    for(i in 1:nrow(Species_list)){
+    Occurrence[i]<-occ_count(taxonKey = (Species_list[i,2]),georeferenced = TRUE)
     }
 
-    Species_Occurrence_Count<-data.frame(Species_TaxonKey,Occurrence)
-    colnames(Species_Occurrence_Count)[1:3]<-c("Scientific_Name","GBIF_TaxonKey","GBIF_Occurrence_Count")
-    Species_Occurrence_Count <- Species_Occurrence_Count %>% filter(GBIF_Occurrence_Count > min_occur) # Removes all species that have fewer than min_occur records
+    Species_list<-data.frame(Species_list,Occurrence)
+    colnames(Species_list)[1:3]<-c("Scientific_Name","GBIF_TaxonKey","GBIF_Occurrence_Count")
+    Species_list <- Species_list %>% filter(GBIF_Occurrence_Count > min_occur) # Removes all species that have fewer than min_occur records
     print("Species with too few records have been removed")
 
     ###Queried GBIF to find the occurrence data for each species
@@ -102,28 +103,25 @@ GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=
 
     Geo_Occurrence<-c()
     Country_Count<-c()
-    Full_Count<-c()
-    for(i in 1:nrow(Species_Occurrence_Count)){
-    Europe=occ_search(taxonKey = Species_Occurrence_Count[i,2], hasCoordinate = TRUE, hasGeospatialIssue = FALSE, country = c(geo_area), return = "meta")
-    for(j in 1:50){
-        Europe_Continent=Europe[[j]][["count"]]
-        Country_Count[j]=sum(Europe_Continent)
+    for(i in 1:nrow(Species_list)){
+    Area_Occurrence=occ_search(taxonKey = Species_list[i,2], hasCoordinate = TRUE, hasGeospatialIssue = FALSE, country = c(geo_area), return = "meta")
+    for(j in 1:length(geo_area)){
+        Country_Count[j]=sum(Area_Occurrence[[j]][["count"]])
     }
-    Full_Count=sum(Country_Count)
-    Geo_Occurrence[i]<-sum(Full_Count)
+    Geo_Occurrence[i]<-sum(sum(Country_Count))
     }
 
-    Europe_Occurrence_Count<-cbind(Species_Occurrence_Count,Geo_Occurrence)
-    colnames(Europe_Occurrence_Count)[4]<-c("GBIF_Europe_Occurrence_Count")
-
-    European_Bee_Species <- Europe_Occurrence_Count %>%
-    filter(GBIF_Europe_Occurrence_Count > min_occur) %>% # Removes all species with less than min_occur records in the geogrphic area
+    Species_list<-cbind(Species_list,Geo_Occurrence)
+    colnames(Species_list)[4]<-c("GBIF_Area_Occurrence_Count")
+  
+    Species_list <- Species_list %>%
+    filter(GBIF_Area_Occurrence_Count > min_occur) %>% # Removes all species with less than min_occur records in the geogrphic area
     arrange(Scientific_Name)
 
     #save(file ="RData_European_Bee_Species.RData", European_Bee_Species)
 
     print ("Occurance data gathered")
-
+    return(Species_list)
 }
 
 
