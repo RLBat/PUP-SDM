@@ -2,6 +2,10 @@
 # Author: Rachel Bates (adapted from code by Patrick Walkden)
 # Date: 21/06/19
 
+require(dplyr)
+require(tidyr)
+require(rgbif)
+require(taxize)
 
 #' Using a list of species (or if other taxa it first generates a list of species), checks for synonyms with GBIF and catalogue of life, gets all occurance data (for a specific geographic area), and associates the required data with it.
 #' 
@@ -120,7 +124,8 @@ GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=
 
     #save(file ="RData_European_Bee_Species.RData", European_Bee_Species)
 
-    print ("Occurance data gathered")
+    print ("Occurance data gathered. Data contained in Species_list)
+    Species_list<<-Species_list
     return(Species_list)
 }
 
