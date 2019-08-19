@@ -1,0 +1,250 @@
+Country_Name,Country_Code,UN_Region,Realm,UN_Subregion
+Afghanistan,AF,Asia,,Southern_Asia
+Åland Islands,AX,EUR,Palearctic,Northern_Europe
+Albania,AL,EUR,Palearctic,Southern_Europe
+Algeria,DZ,Africa,Afrotropics,Northern_Africa
+American Samoa,AS,Oceania,Australasia,Polynesia
+Andorra,AD,EUR,Palearctic,Southern_Europe
+Angola,AO,Africa,Afrotropics,Middle_Africa
+Anguilla,AI,Latin_America,Neotropics,Caribbean
+Antarctica,AQ,,Antarctic,
+Antigua and Barbuda,AG,Latin_America,Neotropics,Caribbean
+Argentina,AR,Latin_America,Neotropics,South_America
+Armenia,AM,Asia,Palearctic,Western_Asia
+Aruba,AW,Latin_America,Neotropics,Caribbean
+Australia,AU,Oceania,Australasia,Australasia
+Austria,AT,EUR,Palearctic,Western_Europe
+Azerbaijan,AZ,Asia,Palearctic,Western_Asia
+Bahamas,BS,Latin_America,Neotropics,Caribbean
+Bahrain,BH,Asia,Palearctic,Western_Asia
+Bangladesh,BD,Asia,,Southern_Asia
+Barbados,BB,Latin_America,Neotropics,Caribbean
+Belarus,BY,EUR,Palearctic,Eastern_Europe
+Belgium,BE,EUR,Palearctic,Western_Europe
+Belize,BZ,Latin_America,Neotropics,Central_America
+Benin,BJ,Africa,Afrotropics,Western_Africa
+Bermuda,BM,Latin_America,,Northern_America
+Bhutan,BT,Asia,,Southern_Asia
+Bolivia,BO,Latin_America,Neotropics,South_America
+Bonaire Sint Eustatius and Saba,BQ,Latin_America,Neotropics,Caribbean
+Bosnia and Herzegovina,BA,EUR,Palearctic,Southern_Europe
+Botswana,BW,Africa,Afrotropics,Southern_Africa
+Bouvet Island,BV,,,
+Brazil,BR,Latin_America,Neotropics,South_America
+British Indian Ocean Territory (the),IO,,Indo-Malay,
+Brunei Darussalam,BN,Asia,Indo-Malay,South_eastern_Asia
+Bulgaria,BG,EUR,Palearctic,Eastern_Europe
+Burkina Faso,BF,Africa,Afrotropics,Western_Africa
+Burundi,BI,Africa,Afrotropics,Eastern_Africa
+Cabo Verde,CV,Africa,Afrotropics,Western_Africa
+Cambodia,KH,Asia,Indo-Malay,South_eastern_Asia
+Cameroon,CM,Africa,Afrotropics,Middle_Africa
+Canada,CA,Latin_America,Nearctic,Northern_America
+Cayman Islands,KY,Latin_America,Neotropics,Caribbean
+Central African Republic,CF,Africa,Afrotropics,Middle_Africa
+Chad,TD,Africa,Afrotropics,Middle_Africa
+Chile,CL,Latin_America,Neotropics,South_America
+China,CN,Asia,,Eastern_Asia
+Christmas Island,CX,Oceania,Australasia,Australasia
+Cocos (Keeling) Islands,CC,Oceania,Australasia,Australasia
+Colombia,CO,Latin_America,Neotropics,South_America
+Comoros,KM,Africa,Afrotropics,Eastern_Africa
+Democratic Republic of the Congo,CD,Africa,Afrotropics,Middle_Africa
+Republic of the Congo,CG,Africa,Afrotropics,Middle_Africa
+Cook Islands,CK,Oceania,Australasia,Polynesia
+Costa Rica,CR,Latin_America,Neotropics,Central_America
+Côte d'Ivoire,CI,Africa,Afrotropics,Western_Africa
+Croatia,HR,EUR,Palearctic,Southern_Europe
+Cuba,CU,Latin_America,Neotropics,Caribbean
+Curaçao,CW,Latin_America,Neotropics,Caribbean
+Cyprus,CY,Asia,Palearctic,Western_Asia
+Czechia,CZ,EUR,Palearctic,Eastern_Europe
+Denmark,DK,EUR,Palearctic,Northern_Europe
+Djibouti,DJ,Africa,Afrotropics,Eastern_Africa
+Dominica,DM,Latin_America,Neotropics,Caribbean
+Dominican Republic,DO,Latin_America,Neotropics,Caribbean
+Ecuador,EC,Latin_America,Neotropics,South_America
+Egypt,EG,Africa,Afrotropics,Northern_Africa
+El Salvador,SV,Latin_America,Neotropics,Central_America
+Equatorial Guinea,GQ,Africa,Afrotropics,Middle_Africa
+Eritrea,ER,Africa,Afrotropics,Eastern_Africa
+Estonia,EE,EUR,Palearctic,Northern_Europe
+Eswatini,SZ,Africa,Afrotropics,Southern_Africa
+Ethiopia,ET,Africa,Afrotropics,Eastern_Africa
+Falkland Islands,FK,Latin_America,Neotropics,South_America
+Faroe Islands,FO,EUR,Palearctic,Northern_Europe
+Fiji,FJ,Oceania,Australasia,Melanesia
+Finland,FI,EUR,Palearctic,Northern_Europe
+France,FR,EUR,Palearctic,Western_Europe
+French Guiana,GF,Latin_America,Neotropics,South_America
+French Polynesia,PF,Oceania,Australasia,Polynesia
+French Southern Territories (the),TF,,Afrotropics,
+Gabon,GA,Africa,Afrotropics,Middle_Africa
+Gambia,GM,Africa,Afrotropics,Western_Africa
+Georgia,GE,Asia,Palearctic,Western_Asia
+Germany,DE,EUR,Palearctic,Western_Europe
+Ghana,GH,Africa,Afrotropics,Western_Africa
+Gibraltar,GI,EUR,Palearctic,Southern_Europe
+Greece,GR,EUR,Palearctic,Southern_Europe
+Greenland,GL,Latin_America,,Northern_America
+Grenada,GD,Latin_America,Neotropics,Caribbean
+Guadeloupe,GP,Latin_America,Neotropics,Caribbean
+Guam,GU,Oceania,Australasia,Micronesia
+Guatemala,GT,Latin_America,Neotropics,Central_America
+Guernsey,GG,EUR,Palearctic,Northern_Europe
+Guinea,GN,Africa,Afrotropics,Western_Africa
+Guinea-Bissau,GW,Africa,Afrotropics,Western_Africa
+Guyana,GY,Latin_America,Neotropics,South_America
+Haiti,HT,Latin_America,Neotropics,Caribbean
+Heard Island and McDonald Islands,HM,Oceania,Australasia,Australasia
+Vatican City,VA,EUR,Palearctic,Southern_Europe
+Honduras,HN,Latin_America,Neotropics,Central_America
+Hong Kong,HK,Asia,,Eastern_Asia
+Hungary,HU,EUR,Palearctic,Eastern_Europe
+Iceland,IS,EUR,Palearctic,Northern_Europe
+India,IN,Asia,Indo-Malay,Southern_Asia
+Indonesia,ID,Asia,Indo-Malay,South_eastern_Asia
+Iran,IR,Asia,,Southern_Asia
+Iraq,IQ,Asia,Palearctic,Western_Asia
+Ireland,IE,EUR,Palearctic,Northern_Europe
+Isle of Man,IM,EUR,Palearctic,Northern_Europe
+Israel,IL,Asia,Palearctic,Western_Asia
+Italy,IT,EUR,Palearctic,Southern_Europe
+Jamaica,JM,Latin_America,Neotropics,Caribbean
+Japan,JP,Asia,,Eastern_Asia
+Jersey,JE,EUR,Palearctic,Northern_Europe
+Jordan,JO,Asia,Palearctic,Western_Asia
+Kazakhstan,KZ,Asia,,Central_Asia
+Kenya,KE,Africa,Afrotropics,Eastern_Africa
+Kiribati,KI,Oceania,Australasia,Micronesia
+North Korea,KP,Asia,,Eastern_Asia
+South Korea,KR,Asia,,Eastern_Asia
+Kuwait,KW,Asia,Palearctic,Western_Asia
+Kyrgyzstan,KG,Asia,,Central_Asia
+Lao People's Democratic Republic,LA,Asia,Indo-Malay,South_eastern_Asia
+Latvia,LV,EUR,Palearctic,Northern_Europe
+Lebanon,LB,Asia,Palearctic,Western_Asia
+Lesotho,LS,Africa,Afrotropics,Southern_Africa
+Liberia,LR,Africa,Afrotropics,Western_Africa
+Libya,LY,Africa,Afrotropics,Northern_Africa
+Liechtenstein,LI,EUR,Palearctic,Western_Europe
+Lithuania,LT,EUR,Palearctic,Northern_Europe
+Luxembourg,LU,EUR,Palearctic,Western_Europe
+Macao,MO,Asia,,Eastern_Asia
+Madagascar,MG,Africa,Afrotropics,Eastern_Africa
+Malawi,MW,Africa,Afrotropics,Eastern_Africa
+Malaysia,MY,Asia,Indo-Malay,South_eastern_Asia
+Maldives,MV,Asia,,Southern_Asia
+Mali,ML,Africa,Afrotropics,Western_Africa
+Malta,MT,EUR,Palearctic,Southern_Europe
+Marshall Islands,MH,Oceania,Australasia,Micronesia
+Martinique,MQ,Latin_America,Neotropics,Caribbean
+Mauritania,MR,Africa,Afrotropics,Western_Africa
+Mauritius,MU,Africa,Afrotropics,Eastern_Africa
+Mayotte,YT,Africa,Afrotropics,Eastern_Africa
+Mexico,MX,Latin_America,Neotropics,Central_America
+Micronesia,FM,Oceania,Australasia,Micronesia
+Moldova,MD,EUR,Palearctic,Eastern_Europe
+Monaco,MC,EUR,Palearctic,Western_Europe
+Mongolia,MN,Asia,,Eastern_Asia
+Montenegro,ME,EUR,Palearctic,Southern_Europe
+Montserrat,MS,Latin_America,Neotropics,Caribbean
+Morocco,MA,Africa,Afrotropics,Northern_Africa
+Mozambique,MZ,Africa,Afrotropics,Eastern_Africa
+Myanmar,MM,Asia,Indo-Malay,South_eastern_Asia
+Namibia,NA,Africa,Afrotropics,Southern_Africa
+Nauru,NR,Oceania,Australasia,Micronesia
+Nepal,NP,Asia,,Southern_Asia
+Netherlands,NL,EUR,Palearctic,Western_Europe
+New Caledonia,NC,Oceania,Australasia,Melanesia
+New Zealand,NZ,Oceania,Australasia,Australasia
+Nicaragua,NI,Latin_America,Neotropics,Central_America
+Niger,NE,Africa,Afrotropics,Western_Africa
+Nigeria,NG,Africa,Afrotropics,Western_Africa
+Niue,NU,Oceania,Australasia,Polynesia
+Norfolk Island,NF,Oceania,Australasia,Australasia
+North Macedonia,MK,EUR,Palearctic,Southern_Europe
+Northern Mariana Islands,MP,Oceania,Australasia,Micronesia
+Norway,NO,EUR,Palearctic,Northern_Europe
+Oman,OM,Asia,Palearctic,Western_Asia
+Pakistan,PK,Asia,,Southern_Asia
+Palau,PW,Oceania,Australasia,Micronesia
+State of Palestine,PS,Asia,Palearctic,Western_Asia
+Panama,PA,Latin_America,Neotropics,Central_America
+Papua New Guinea,PG,Oceania,Australasia,Melanesia
+Paraguay,PY,Latin_America,Neotropics,South_America
+Peru,PE,Latin_America,Neotropics,South_America
+Philippines,PH,Asia,Indo-Malay,South_eastern_Asia
+Pitcairn,PN,Oceania,Australasia,Polynesia
+Poland,PL,EUR,Palearctic,Eastern_Europe
+Portugal,PT,EUR,Palearctic,Southern_Europe
+Puerto Rico,PR,Latin_America,Neotropics,Caribbean
+Qatar,QA,Asia,Palearctic,Western_Asia
+Réunion,RE,Africa,Afrotropics,Eastern_Africa
+Romania,RO,EUR,Palearctic,Eastern_Europe
+Russia,RU,EUR,Palearctic,Eastern_Europe
+Rwanda,RW,Africa,Afrotropics,Eastern_Africa
+Saint Barthélemy,BL,Latin_America,Neotropics,Caribbean
+Saint Helena Ascension and Tristan da Cunha,SH,Africa,Afrotropics,Western_Africa
+Saint Kitts and Nevis,KN,Latin_America,Neotropics,Caribbean
+Saint Lucia,LC,Latin_America,Neotropics,Caribbean
+Saint Martin (French part),MF,Latin_America,Neotropics,Caribbean
+Saint Pierre and Miquelon,PM,Latin_America,,Northern_America
+Saint Vincent and the Grenadines,VC,Latin_America,Neotropics,Caribbean
+Samoa,WS,Oceania,Australasia,Polynesia
+San Marino,SM,EUR,Palearctic,Southern_Europe
+Sao Tome and Principe,ST,Africa,Afrotropics,Middle_Africa
+Saudi Arabia,SA,Asia,Palearctic,Western_Asia
+Senegal,SN,Africa,Afrotropics,Western_Africa
+Serbia,RS,EUR,Palearctic,Southern_Europe
+Seychelles,SC,Africa,Afrotropics,Eastern_Africa
+Sierra Leone,SL,Africa,Afrotropics,Western_Africa
+Singapore,SG,Asia,Indo-Malay,South_eastern_Asia
+Sint Maarten (Dutch part),SX,Latin_America,Neotropics,Caribbean
+Slovakia,SK,EUR,Palearctic,Eastern_Europe
+Slovenia,SI,EUR,Palearctic,Southern_Europe
+Solomon Islands,SB,Oceania,Australasia,Melanesia
+Somalia,SO,Africa,Afrotropics,Eastern_Africa
+South Africa,ZA,Africa,Afrotropics,Southern_Africa
+South Georgia and the South Sandwich Islands,GS,Latin_America,Neotropics,South_America
+South Sudan,SS,Africa,Afrotropics,Eastern_Africa
+Spain,ES,EUR,Palearctic,Southern_Europe
+Sri Lanka,LK,Asia,,Southern_Asia
+Sudan,SD,Africa,Afrotropics,Northern_Africa
+Suriname,SR,Latin_America,Neotropics,South_America
+Svalbard and Jan Mayen,SJ,EUR,Palearctic,Northern_Europe
+Sweden,SE,EUR,Palearctic,Northern_Europe
+Switzerland,CH,EUR,Palearctic,Western_Europe
+Syrian Arab Republic,SY,Asia,Palearctic,Western_Asia
+Taiwan (Province of China),TW,Asia,,Eastern_Asia
+Tajikistan,TJ,Asia,,Central_Asia
+Tanzania,TZ,Africa,Afrotropics,Eastern_Africa
+Thailand,TH,Asia,Indo-Malay,South_eastern_Asia
+Timor-Leste,TL,Asia,Indo-Malay,South_eastern_Asia
+Togo,TG,Africa,Afrotropics,Western_Africa
+Tokelau,TK,Oceania,Australasia,Polynesia
+Tonga,TO,Oceania,Australasia,Polynesia
+Trinidad and Tobago,TT,Latin_America,Neotropics,Caribbean
+Tunisia,TN,Africa,Afrotropics,Northern_Africa
+Turkey,TR,Asia,Palearctic,Western_Asia
+Turkmenistan,TM,Asia,,Central_Asia
+Turks and Caicos Islands,TC,Latin_America,Neotropics,Caribbean
+Tuvalu,TV,Oceania,Australasia,Polynesia
+Uganda,UG,Africa,Afrotropics,Eastern_Africa
+Ukraine,UA,EUR,Palearctic,Eastern_Europe
+United Arab Emirates,AE,Asia,Palearctic,Western_Asia
+United Kingdom,GB,EUR,Palearctic,Northern_Europe
+United States Minor Outlying Islands (the),UM,,,
+United States of America,US,Latin_America,Nearctic,Northern_America
+Uruguay,UY,Latin_America,Neotropics,South_America
+Uzbekistan,UZ,Asia,,Central_Asia
+Vanuatu,VU,Oceania,Australasia,Melanesia
+Venezuela,VE,Latin_America,Neotropics,South_America
+Vietnam,VN,Asia,Indo-Malay,South_eastern_Asia
+British Virgin Islands,VG,Latin_America,Neotropics,Caribbean
+United States Virgin Islands,VI,Latin_America,Neotropics,Caribbean
+Wallis and Futuna,WF,Oceania,Australasia,Polynesia
+Western Sahara,EH,Africa,Afrotropics,Northern_Africa
+Yemen,YE,Asia,Palearctic,Western_Asia
+Zambia,ZM,Africa,Afrotropics,Eastern_Africa
+Zimbabwe,ZW,Africa,Afrotropics,Eastern_Africa
