@@ -149,4 +149,54 @@ Choices that can be made here:: the algorithm by which ou thin and the distance 
 
 Data Output:: (THINNED DATA)
 
-Comments:: to use the gurobi optimizer algorithm you have to download it online, really easy.
+Comments:: to use the gurobi optimizer algorithm you have to download it online, really easy. also getting the package 'spThin' can be a tad annoying sometimes, but you
+hav to make sure that you download the version from github in 'jeffreyhansons' repository.
+
+
+8)Pseudo-absence_random_absence 
+
+Data required: thinned data 
+               Biolcimatic variables that you want to model the occurrences as a function of. 
+
+This script runs a two-step pseudo-absence generation. First it performs environmental profiling on the occurrence data using a one class support vector machine, to identify
+areas of the background data (Boclimatic variables) that are more environmentally dissimilar to choose pseudo-absences from, this is with the aim of reducing the prevelance 
+of false absences. ----- NOTE THIS SCRIPT ALSO TAKES A LONG TIME TO RUN.
+
+choices to be made here: the minimum distance pseudo-absences are generated away from each other and presence points. 
+                               The proportion of pseudo-absence to presenc points that you want to generate.
+
+Data output: data frame of coordinates that have been generated as pseudo absences.
+
+
+
+9) Pseudo_absence_occ_absences --- NOT THE MOST NECESSARY SCRIPT IN THE WORLD. 
+
+Data_required: CLEAN_DATA 
+
+Chooses additional pseudo-absences points by identifying coordinates within the GBIF data that multiple bees have been recorded at - a lot of bees at a single coordinate
+could be indicative of the area being comprehensively surveyed and therefore be more likely to be a true-absence. 
+
+data output: another data frame with pseudo-absences generated from occurrence points.  
+
+
+
+AT THIS POINT THE POTENTIAL INACCURACIES AND SAMPLING BIASES IN THE DERIVED GBIF DATA SHOULD BE ACCOUNTED FOR (to the best of our ability),
+THEREFORE YOU CAN START TO THINK ABOUT RUNNING SOME SPECIES DISTRIBUTION MODELS - HERE I HAVE DONE THIS WITH THE R PACKAGE BIOMOD2.
+
+10) SDM_Modelling_Modeling
+
+Data required: (Thinned data), 
+              pseudo-absences 
+              the bioclimatic variables
+
+I have tried to annotate this script as much as possible
+
+decisions that can be made: the models that you want to run the SDMs with,
+ the evaluation statistics that you want to calculate to be able to compared the predictive performance of each of the models. 
+
+
+data output: a dataframe of the evaluation statistics of each model. Biomod2 saves the models and all the relevant data in your working directory the next script will extract the models you want.
+
+
+
+11)
