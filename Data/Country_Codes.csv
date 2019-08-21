@@ -26,7 +26,7 @@ Benin,BJ,Africa,Afrotropics,Western_Africa
 Bermuda,BM,Latin_America,,Northern_America
 Bhutan,BT,Asia,,Southern_Asia
 Bolivia,BO,Latin_America,Neotropics,South_America
-Bonaire Sint Eustatius and Saba,BQ,Latin_America,Neotropics,Caribbean
+"Bonaire, Sint Eustatius and Saba",BQ,Latin_America,Neotropics,Caribbean
 Bosnia and Herzegovina,BA,EUR,Palearctic,Southern_Europe
 Botswana,BW,Africa,Afrotropics,Southern_Africa
 Bouvet Island,BV,,,
@@ -44,7 +44,7 @@ Cayman Islands,KY,Latin_America,Neotropics,Caribbean
 Central African Republic,CF,Africa,Afrotropics,Middle_Africa
 Chad,TD,Africa,Afrotropics,Middle_Africa
 Chile,CL,Latin_America,Neotropics,South_America
-China,CN,Asia,,Eastern_Asia
+China,CN,Asia,Palearctic,Eastern_Asia
 Christmas Island,CX,Oceania,Australasia,Australasia
 Cocos (Keeling) Islands,CC,Oceania,Australasia,Australasia
 Colombia,CO,Latin_America,Neotropics,South_America
@@ -64,7 +64,7 @@ Djibouti,DJ,Africa,Afrotropics,Eastern_Africa
 Dominica,DM,Latin_America,Neotropics,Caribbean
 Dominican Republic,DO,Latin_America,Neotropics,Caribbean
 Ecuador,EC,Latin_America,Neotropics,South_America
-Egypt,EG,Africa,Afrotropics,Northern_Africa
+Egypt,EG,Africa,Palearctic,Northern_Africa
 El Salvador,SV,Latin_America,Neotropics,Central_America
 Equatorial Guinea,GQ,Africa,Afrotropics,Middle_Africa
 Eritrea,ER,Africa,Afrotropics,Eastern_Africa
@@ -86,7 +86,7 @@ Germany,DE,EUR,Palearctic,Western_Europe
 Ghana,GH,Africa,Afrotropics,Western_Africa
 Gibraltar,GI,EUR,Palearctic,Southern_Europe
 Greece,GR,EUR,Palearctic,Southern_Europe
-Greenland,GL,Latin_America,,Northern_America
+Greenland,GL,Latin_America,Nearctic,Northern_America
 Grenada,GD,Latin_America,Neotropics,Caribbean
 Guadeloupe,GP,Latin_America,Neotropics,Caribbean
 Guam,GU,Oceania,Australasia,Micronesia
@@ -99,28 +99,28 @@ Haiti,HT,Latin_America,Neotropics,Caribbean
 Heard Island and McDonald Islands,HM,Oceania,Australasia,Australasia
 Vatican City,VA,EUR,Palearctic,Southern_Europe
 Honduras,HN,Latin_America,Neotropics,Central_America
-Hong Kong,HK,Asia,,Eastern_Asia
+Hong Kong,HK,Asia,Indo-Malay,Eastern_Asia
 Hungary,HU,EUR,Palearctic,Eastern_Europe
 Iceland,IS,EUR,Palearctic,Northern_Europe
 India,IN,Asia,Indo-Malay,Southern_Asia
 Indonesia,ID,Asia,Indo-Malay,South_eastern_Asia
-Iran,IR,Asia,,Southern_Asia
+Iran,IR,Asia,Palearctic,Southern_Asia
 Iraq,IQ,Asia,Palearctic,Western_Asia
 Ireland,IE,EUR,Palearctic,Northern_Europe
 Isle of Man,IM,EUR,Palearctic,Northern_Europe
 Israel,IL,Asia,Palearctic,Western_Asia
 Italy,IT,EUR,Palearctic,Southern_Europe
 Jamaica,JM,Latin_America,Neotropics,Caribbean
-Japan,JP,Asia,,Eastern_Asia
+Japan,JP,Asia,Palearctic,Eastern_Asia
 Jersey,JE,EUR,Palearctic,Northern_Europe
 Jordan,JO,Asia,Palearctic,Western_Asia
 Kazakhstan,KZ,Asia,,Central_Asia
 Kenya,KE,Africa,Afrotropics,Eastern_Africa
 Kiribati,KI,Oceania,Australasia,Micronesia
-North Korea,KP,Asia,,Eastern_Asia
-South Korea,KR,Asia,,Eastern_Asia
+North Korea,KP,Asia,Palearctic,Eastern_Asia
+South Korea,KR,Asia,Palearctic,Eastern_Asia
 Kuwait,KW,Asia,Palearctic,Western_Asia
-Kyrgyzstan,KG,Asia,,Central_Asia
+Kyrgyzstan,KG,Asia,Palearctic,Central_Asia
 Lao People's Democratic Republic,LA,Asia,Indo-Malay,South_eastern_Asia
 Latvia,LV,EUR,Palearctic,Northern_Europe
 Lebanon,LB,Asia,Palearctic,Western_Asia
@@ -149,12 +149,12 @@ Monaco,MC,EUR,Palearctic,Western_Europe
 Mongolia,MN,Asia,,Eastern_Asia
 Montenegro,ME,EUR,Palearctic,Southern_Europe
 Montserrat,MS,Latin_America,Neotropics,Caribbean
-Morocco,MA,Africa,Afrotropics,Northern_Africa
+Morocco,MA,Africa,Palearctic,Northern_Africa
 Mozambique,MZ,Africa,Afrotropics,Eastern_Africa
 Myanmar,MM,Asia,Indo-Malay,South_eastern_Asia
 Namibia,NA,Africa,Afrotropics,Southern_Africa
 Nauru,NR,Oceania,Australasia,Micronesia
-Nepal,NP,Asia,,Southern_Asia
+Nepal,NP,Asia,Indo-Malay,Southern_Asia
 Netherlands,NL,EUR,Palearctic,Western_Europe
 New Caledonia,NC,Oceania,Australasia,Melanesia
 New Zealand,NZ,Oceania,Australasia,Australasia
@@ -185,7 +185,7 @@ Romania,RO,EUR,Palearctic,Eastern_Europe
 Russia,RU,EUR,Palearctic,Eastern_Europe
 Rwanda,RW,Africa,Afrotropics,Eastern_Africa
 Saint Barthélemy,BL,Latin_America,Neotropics,Caribbean
-Saint Helena Ascension and Tristan da Cunha,SH,Africa,Afrotropics,Western_Africa
+"Saint Helena, Ascension and Tristan da Cunha",SH,Africa,Afrotropics,Western_Africa
 Saint Kitts and Nevis,KN,Latin_America,Neotropics,Caribbean
 Saint Lucia,LC,Latin_America,Neotropics,Caribbean
 Saint Martin (French part),MF,Latin_America,Neotropics,Caribbean
