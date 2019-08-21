@@ -124,7 +124,7 @@ GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=
 
     #save(file ="RData_European_Bee_Species.RData", European_Bee_Species)
 
-    print ("Occurance data gathered. Data contained in Species_list)
+    print ("Occurance data gathered. Data contained in Species_list")
     Species_list<<-Species_list
     return(Species_list)
 }
