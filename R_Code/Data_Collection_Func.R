@@ -132,4 +132,5 @@ GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=
 
 geo_area<-c("AT","AD","AL","AX","BA","BY","BE","BG","CY","GG","GI","JE","HR","CH","CY","CZ","DK","EE","FI","FR","DE",
                       "GR","HU","HR","IE","IT","LI","LV","LT","LU","ME","MC","MT","MK","MT","MD","NL","NO","PL","PT","VA","RO",
-                      "RU","SK","SI","SM","ES","SE","UA","GB")  ### Vector of European CountryCodes  
+                      "RU","SK","SI","SM","ES","SE","UA","GB")  ### Vector of European CountryCodes 
+taxa_names<-"Carnivora"
