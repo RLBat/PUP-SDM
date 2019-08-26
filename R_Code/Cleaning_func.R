@@ -5,6 +5,13 @@ require(rgbif)
 require(magrittr)
 require(countrycode)
 require(CoordinateCleaner)
+require(rgdal)
+require(sp)
+require(ggplot2)
+require(magrittr)
+require(adehabitatHR)
+require(scales)
+require(doParallel)
 
 ## Initally flag those coordinates that are a bit dubious.
 Clean_GBIF_Data<-function(GBIF_Data, outlier=12, min_occur=20, precision_m=5){
