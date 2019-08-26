@@ -11,7 +11,13 @@ require(ggplot2)
 require(magrittr)
 require(adehabitatHR)
 require(scales)
-require(doParallel)
+
+#' Cleans the output from Data_Collection_Func to remove potential outliers
+#' 
+#' @param taxon_rank The taxon level for which you are searching. 1=Species, indicates using binomial species names. 0 indicates using any taxanomic rank Genus or higher. Defaults to 0.
+#' @return The sum of \code{x} and \code{y}.
+#' @examples
+#' 
 
 ## Initally flag those coordinates that are a bit dubious.
 Clean_GBIF_Data<-function(GBIF_Data, outlier=12, min_occur=20, precision_m=5){

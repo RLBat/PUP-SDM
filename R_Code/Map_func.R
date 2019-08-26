@@ -12,10 +12,10 @@ require(dplyr)
 #' @examples
 #' 
 
-Neo_Species_list<-readRDS("../../PurvisProj/Coding/SDM/Data/neo_GBIF_checkpoint.rds")
-Neo_Species_list<-readRDS("../Data/neo_GBIF_checkpoint.rds")
+# Neo_Species_list<-readRDS("../../PurvisProj/Coding/SDM/Data/neo_GBIF_checkpoint.rds")
+# Neo_Species_list<-readRDS("../Data/neo_GBIF_checkpoint.rds")
 
-Distribution_Map <- function(data, output_path, input_species=NULL, filename="Map", country=TRUE){
+Distribution_Map <- function(data, output_path, input_species=NULL, filename="Map", country=FALSE){
     ## Add if statement for if specific species are given
     data<-subset(data, data$species!="NA")
     if (missing(input_species)){
@@ -31,7 +31,7 @@ Distribution_Map <- function(data, output_path, input_species=NULL, filename="Ma
         p <- ggplot()+ coord_fixed() + geom_map(data=wm, map=wm, aes(group = group, map_id= region),
             fill = "darkgrey")     
         if (country==TRUE){
-            p <- p + aes(colour= "#7f7f7f", size = 0.5)
+            p <- p + aes(colour= "black", size = 0.02)
         } 
         p <- p + geom_point(data = iter_species, aes(decimalLongitude, decimalLatitude),
             colour = "orange", size = 1)
@@ -39,7 +39,7 @@ Distribution_Map <- function(data, output_path, input_species=NULL, filename="Ma
         p <- p + lims(x = c(floor(min(iter_species$decimalLongitude)-10), ceiling(max(iter_species$decimalLongitude)+10)),
             y = c(floor(min(iter_species$decimalLatitude)-10), ceiling(max(iter_species$decimalLatitude)+10)))
         p <- p + theme_bw()
-        paste("Saving map of", no_species[i], spe=" ")
+        print(paste("Saving map of", no_species[i], spe=" "))
         invisible(ggsave(filename=paste(no_species[i], filename, sep="_"), path=output_path, device="pdf"))
     }
 }

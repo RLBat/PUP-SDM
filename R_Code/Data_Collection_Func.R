@@ -57,16 +57,17 @@ GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=
         Species_list <- input_data
     }
     
+    print("Gathering species list")
+    ## get the family IDs for the three databases we are going to query to get list of species names
+    TaxonKey <- taxize::get_ids(names = taxa_names, db = c("col","gbif"))
+    TaxonKey <- data.frame(taxa_names, TaxonKey[[1]], TaxonKey[[2]])
+    TaxonKey <- TaxonKey[,c(1:2,8)]
+    colnames(TaxonKey)[2:3] <- c("col", "gbif")
+    TaxonKey$taxa_names<-as.character(TaxonKey$taxa_names)
+
     ## Gets list of species if rank genus or higher is used
     if (taxon_rank==0){
-        print("Gathering species list")
-        ## get the family IDs for the three databases we are going to query to get list of species names
-        TaxonKey <- taxize::get_ids(names = taxa_names, db = c("col","gbif"))
-        TaxonKey <- data.frame(taxa_names, TaxonKey[[1]], TaxonKey[[2]])
-        TaxonKey <- TaxonKey[,c(1:2,8)]
-        colnames(TaxonKey)[2:3] <- c("col", "gbif")
-        
-        print("Querying GBIF and Catalogue of life to collect full and distinct list of species names. This may take several minutes.")
+        print("Querying GBIF and Catalogue of life to collect correct species names.")
         for(i in 1:length(taxa_names)){
             col_names <- col_downstream(id = TaxonKey[i,2], downto = "species", intermediate = FALSE, extant_only = TRUE)         ## Catelouge of Life
             gbif_names <- gbif_downstream(key = TaxonKey[i,3], downto = "species", intermediate = FALSE, start = 1, limit = 100000000) ## Gbif database
@@ -74,6 +75,20 @@ GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=
             Query_Species <- unname(unlist(Query_Species))
             Species_list<- append(Query_Species, Species_list) # Adds the new species list to the overall species list
             print("List generated.")
+        }
+    } else {
+        print("Querying Catalogue of life to collect correct species names.")
+        for(i in 1:length(TaxonKey)){
+            col_names <- col_search(id = TaxonKey$col[i])
+            if (length(col_names)==1){
+                TaxonKey$taxa_names[i]<-col_names[[1]][,2]
+            } else if (length(col_names)==0){
+                return
+            } else { #May need changing? Not sure if would ever have >1
+                print("Multiple synonyms found, using the first")
+                TaxonKey[i,1]<-col_names[[1]][2]
+            }       
+            Species_list<-append(Species_list,TaxonKey[,1])
         }
     }
 
@@ -88,7 +103,7 @@ GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=
     print("Fetching species IDs from GBIF")
     Species_list <- data.frame(Species_list$Scientific_Name, UsageKey=NA)
     for(i in 1:nrow(Species_list)){
-        Species_list$UsageKey[i] <- name_backbone(name=(Species_list[i,1]),rank="Species",kingdom=Kingdom)$usageKey
+        Species_list$UsageKey[i] <- name_backbone(name=(Species_list[i,1]),rank="Species",kingdom=Kingdom, strict=TRUE)$usageKey
     }
 
     print("Counting available occurrence data")
@@ -103,12 +118,12 @@ GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=
     print("Species with too few records have been removed")
 
     ###Querying GBIF to find the occurrence data for each species
-    print("Searching for all occurance records in specified geographic area.")
+    print("Searching for all occurance records in specified geographic area. This may take some time.")
 
     Geo_Occurrence<-c()
     Country_Count<-c()
     for(i in 1:nrow(Species_list)){
-        Area_Occurrence=occ_search(taxonKey = Species_list[i,2], hasCoordinate = TRUE, hasGeospatialIssue = FALSE, country = c(geo_area), return = "meta")
+        Area_Occurrence=occ_search(taxonKey = Species_list[i,2], hasCoordinate = TRUE, hasGeospatialIssue = FALSE, country = geo_area, return = "meta")
             for(j in 1:length(geo_area)){
                 ### Breaks if only one country used, need to check
                 Country_Count[j]=sum(Area_Occurrence[[j]][["count"]])
@@ -125,20 +140,21 @@ GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=
 
     print ("Gathering occurance data")
 
-    ### From GBIF 2
-
+    ## Initialise an empty df to place the data into
     GBIF_Data<-data.frame(species=NA, decimalLongitude=NA, decimalLatitude=NA, countryCode=NA, individualCount=NA,
         gbifID=NA, family=NA, taxonRank=NA, coordinateUncertaintyInMeters=NA, year=NA, basisOfRecord=NA, 
-        institutionCode=NA, datasetName=NA, geodeticDatum=NA, verbatimCoordinateSystem=NA) #verbatimSRS=NA,
+        institutionCode=NA, datasetName=NA, geodeticDatum=NA, verbatimCoordinateSystem=NA)
     
     for(i in 1:nrow(Species_list)){
-        Data <- occ_search(taxonKey = Species_list[i,2], hasCoordinate = TRUE,hasGeospatialIssue = FALSE,
-            limit = occ_limit, year=paste(max_age, format(Sys.Date(), "%Y"), sep=","), return = "data") 
+        ## For some reason grabs all species from everywhere? ##
+        Data <- occ_search(taxonKey = Species_list[i,2], hasCoordinate = TRUE, hasGeospatialIssue = FALSE,
+        limit = occ_limit, year=paste(max_age, format(Sys.Date(), "%Y"), sep=","), return = "data") 
         Data <- Data %>% dplyr::select(one_of("species", "decimalLongitude", 
-            "decimalLatitude", "countryCode", "individualCount",
-            "gbifID", "family", "taxonRank", "coordinateUncertaintyInMeters", "year",
-            "basisOfRecord", "institutionCode", "datasetName", "geodeticDatum",
-            "verbatimCoordinateSystem")) #"verbatimSRS"
+        "decimalLatitude", "countryCode", "individualCount",
+        "gbifID", "family", "taxonRank", "coordinateUncertaintyInMeters", "year",
+        "basisOfRecord", "institutionCode", "datasetName", "geodeticDatum",
+        "verbatimCoordinateSystem"))
+        # Place data into final df
         GBIF_Data<-rbind(GBIF_Data, Data)
     }
     
@@ -154,7 +170,7 @@ GBIFSpecies <- function(taxon_rank=0, Kingdom="Animalia", taxa_names, min_occur=
 
             rm_Species <- Species %>% filter(Scientific_Name != GBIF_Species)
             print(paste("Removing ", nrow(rm_Species), " species records due to mismatched names", sep=""))
-            #### CURRENTLY DOESN'T WORK TO REMOVE SPECIES ###
+            #### NEED TO TEST ###
             GBIF_Data <- subset(GBIF_Data, !(GBIF_Data$species %in% rm_Species))
     }
     
