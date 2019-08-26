@@ -10,7 +10,7 @@ PREDICTS <- readRDS("../../taxa-2019-05-09-02-34-47.rds")       #### load PREDIC
 PREDICTS$Scientific_Name <- paste(PREDICTS$Genus,PREDICTS$Species)      #### create column with scientific name
 PREDICTS<- PREDICTS %>%
   drop_na(Species)                                                      ### rm columns with NA
-Bee_Families <- c("Andrenidae") #,"Apidae","Colletidae","Halictidae","Megachilidae","Melittidae","Stenotritidae")  ## vector with the names of the seven bee families
+Bee_Families <- c("Andrenidae", "Apidae","Colletidae","Halictidae","Megachilidae","Melittidae","Stenotritidae")  ## vector with the names of the seven bee families
 PREDICTS <- PREDICTS %>% 
   filter(Family %in% Bee_Families)                ## Subset taxa list so that it only contains species in the bee families 
 Bee_Species <- data.frame(unique(PREDICTS$Scientific_Name))           ### create data frame with just the species list from PREDICTS
